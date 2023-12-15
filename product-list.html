@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>E Store - eCommerce HTML Template</title>
+        <title>Motoragon</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="eCommerce HTML Template Free Download" name="keywords">
         <meta content="eCommerce HTML Template Free Download" name="description">
@@ -129,469 +129,216 @@
         <!-- Breadcrumb End -->
         
         <!-- Product List Start -->
-        <div class="product-view">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="product-view-top">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="product-search">
-                                                <input type="email" value="Search">
-                                                <button><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="product-short">
-                                                <div class="dropdown">
-                                                    <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="#" class="dropdown-item">Newest</a>
-                                                        <a href="#" class="dropdown-item">Popular</a>
-                                                        <a href="#" class="dropdown-item">Most sale</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="product-price-range">
-                                                <div class="dropdown">
-                                                    <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="#" class="dropdown-item">$0 to $50</a>
-                                                        <a href="#" class="dropdown-item">$51 to $100</a>
-                                                        <a href="#" class="dropdown-item">$101 to $150</a>
-                                                        <a href="#" class="dropdown-item">$151 to $200</a>
-                                                        <a href="#" class="dropdown-item">$201 to $250</a>
-                                                        <a href="#" class="dropdown-item">$251 to $300</a>
-                                                        <a href="#" class="dropdown-item">$301 to $350</a>
-                                                        <a href="#" class="dropdown-item">$351 to $400</a>
-                                                        <a href="#" class="dropdown-item">$401 to $450</a>
-                                                        <a href="#" class="dropdown-item">$451 to $500</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="products_section">
+            <div class="products_content">
+                <h1 class="title_prod">Products</h1>
+                <input class="radio" id="new" name="group" type="radio" checked>
+                <input class="radio" id="mtb" name="group" type="radio">
+                <input class="radio" id="kiddie" name="group" type="radio">
+                <div class="prod_selection_container">
+                    <label id="new-tab" for="new">New Arrival</label>
+                    <label id="mtb-tab" for="mtb">Mountain Bikes</label>
+                    <label id="kiddie-tab" for="kiddie">Kiddie Bikes</label>
+                </div>
+                <div class="prod_container">
+                    <div class="card_container" id="new-cards">
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/gtforce.png" alt="GT Force 3.0" class="new_pic">
                             </div>
-                            
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-1.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">GT Force 3.0 26r</div>
+                                    <div class="card_mini_title">&#8369 39,000</div>
+                                    <p class="card_desc">
+                                        New Arrival Mountain Bike 26r
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-2.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-3.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-4.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-5.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-6.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-7.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-8.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-9.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Pagination Start -->
-                        <div class="col-md-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <!-- Pagination Start -->
-                    </div>           
-                    
-                    <!-- Side Bar Start -->
-                    <div class="col-lg-4 sidebar">
-                        <div class="sidebar-widget category">
-                            <h2 class="title">Category</h2>
-                            <nav class="navbar bg-light">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        
-                        <div class="sidebar-widget widget-slider">
-                            <div class="sidebar-slider normal-slider">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-10.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/simontiktokbeat27.png" alt="Simon Tiktok Beat" class="new_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Simon Tiktok Beat 27.5</div>
+                                    <div class="card_mini_title">&#8369 7795</div>
+                                    <p class="card_desc">
+                                        New Arrival Mountain Bike 27.5r
+                                    </p>
                                 </div>
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-9.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="img/product-8.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="sidebar-widget brands">
-                            <h2 class="title">Our Brands</h2>
-                            <ul>
-                                <li><a href="#">Nulla </a><span>(45)</span></li>
-                                <li><a href="#">Curabitur </a><span>(34)</span></li>
-                                <li><a href="#">Nunc </a><span>(67)</span></li>
-                                <li><a href="#">Ullamcorper</a><span>(74)</span></li>
-                                <li><a href="#">Fusce </a><span>(89)</span></li>
-                                <li><a href="#">Sagittis</a><span>(28)</span></li>
-                            </ul>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/simontrail27.png" alt="Simon Trail" class="new_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Simon Trail 27.5</div>
+                                    <div class="card_mini_title">&#8369 7995</div>
+                                    <p class="card_desc">
+                                        New Arrival Mountain Bike 27.5r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="sidebar-widget tag">
-                            <h2 class="title">Tags Cloud</h2>
-                            <a href="#">Lorem ipsum</a>
-                            <a href="#">Vivamus</a>
-                            <a href="#">Phasellus</a>
-                            <a href="#">pulvinar</a>
-                            <a href="#">Curabitur</a>
-                            <a href="#">Fusce</a>
-                            <a href="#">Sem quis</a>
-                            <a href="#">Mollis metus</a>
-                            <a href="#">Sit amet</a>
-                            <a href="#">Vel posuere</a>
-                            <a href="#">orci luctus</a>
-                            <a href="#">Nam lorem</a>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/revelcanyon29.png" alt="Revel Canyon 29" class="new_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Revel Canyon 29</div>
+                                    <div class="card_mini_title">&#8369 9995</div>
+                                    <p class="card_desc">
+                                        New Arrival Mountain Bike 29r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Side Bar End -->
+                    <div class="card_container" id="mtb-cards">
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/shunma26.png" alt="Shunma 26" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Shunma 26 Lady</div>
+                                    <div class="card_mini_title">&#8369 2500</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 26r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/vipernova.png" alt="Viper Nova Lady" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Viper Nova Lady</div>
+                                    <div class="card_mini_title">&#8369 12495</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 26r 
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/goodvibes.png" alt="Simon Good Vibes" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Simon Good Vibes</div>
+                                    <div class="card_mini_title">&#8369 4995</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 27.5r 
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/viperrebel.png" alt="Viper Rebel" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Viper Rebel</div>
+                                    <div class="card_mini_title">&#8369 12,500</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 27.5r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/viperflare.png" alt="Viper Flare" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Viper Flare</div>
+                                    <div class="card_mini_title">&#8369 11,500</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 27.5r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/vipertriad27.png" alt="Viper Triad" class="mtb_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Viper Triad 27.5</div>
+                                    <div class="card_mini_title">&#8369 16,995</div>
+                                    <p class="card_desc">
+                                        Mountain Bike 27.5r
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card_container" id="kiddie-cards">
+                        <div class="cards_prod">
+                            <div class="card_img">
+                                <img src="img/kiddie.png" alt="Kiddie" class="kiddies_pic">
+                            </div>
+                            <div class="card_details_container">
+                                <div class="card_details">
+                                    <div class="card_title">Kiddie</div>
+                                    <div class="card_mini_title">&#8369 1750</div>
+                                    <p class="card_desc">
+                                        Bike for kids
+                                    </p>
+                                </div>
+                                <div class="addcart">
+                                    <button class="addcart-btn" type="button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Product List End -->  
+
+        <!-- Product List End -->
         
         <!-- Brand Start -->
         <div class="brand">
