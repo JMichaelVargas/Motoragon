@@ -1081,7 +1081,7 @@ h2 {
 }
 
 .product-detail .product-content .ratting i {
-    color: #FF6F61;
+    color: yellow;
     font-size: 16px;
 }
 
@@ -1105,7 +1105,7 @@ h2 {
 
 .product-detail .product-content .price p {
     display: inline-block;
-    color: #FF6F61;
+    color: #3af421;
     font-size: 30px;
     font-weight: 700;
     margin: 0;
@@ -1129,7 +1129,7 @@ h2 {
     font-size: 16px;
     text-align: center;
     color: #ffffff;
-    background: #FF6F61;
+    background: #3af421;
     border: none;
 }
 
@@ -1160,7 +1160,7 @@ h2 {
 }
 
 .product-detail .nav.nav-pills .nav-link {
-    color: #FF6F61;
+    color: #3af421;
     background: #000000;
     border-radius: 0;
     transition: all .3s;
@@ -1169,7 +1169,7 @@ h2 {
 .product-detail .nav.nav-pills .nav-link:hover,
 .product-detail .nav.nav-pills .nav-link.active {
     color: #000000;
-    background: #FF6F61;
+    background: #3af421;
 }
 
 .product-detail .tab-content {
@@ -1304,11 +1304,11 @@ h2 {
 }
 
 .sidebar-widget.category .navbar a:hover {
-    color: #FF6F61;
+    color: #3af421;
 }
 
 .sidebar-widget.category .navbar i {
-    color: #FF6F61;
+    color: #3af421;
     width: 20px;
     text-align: center;
     margin-right: 8px;
@@ -1532,15 +1532,15 @@ h2 {
     padding: 2px 0;
     font-size: 16px;
     text-align: center;
-    color: #FF6F61;
+    color: #3af421;
     background: #ffffff;
-    border: 1px solid #FF6F61;
+    border: 1px solid #3af421;
     border-radius: 4px;
 }
 
 .cart-page .coupon button:hover {
     color: #ffffff;
-    background: #FF6F61;
+    background: #3af421;
 }
 
 .cart-page .cart-summary {
@@ -1666,7 +1666,7 @@ h2 {
     font-size: 14px;
     text-align: center;
     color: #ffffff;
-    background: #FF6F61;
+    background: #3af421;
     border: none;
     border-radius: 4px;
 }
@@ -1775,14 +1775,14 @@ h2 {
     font-size: 25px;
     text-align: center;
     color: #000000;
-    background: #FF6F61;
+    background: #3af421;
     border: none;
     border-radius: 4px;
     transition: all .3s;
 }
 
 .checkout .checkout-payment .checkout-btn button:hover {
-    color: #FF6F61;
+    color: #3af421;
     background: #000000;
 }
 
@@ -1811,7 +1811,7 @@ h2 {
 .my-account .nav.nav-pills .nav-link:hover,
 .my-account .nav.nav-pills .nav-link.active {
     color: #ffffff;
-    background: #FF6F61;
+    background: #3af421;
 }
 
 .my-account .nav.nav-pills .nav-link i {

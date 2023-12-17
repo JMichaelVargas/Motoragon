@@ -53,8 +53,8 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link">Products</a>
-                            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
+                            <a href="-list.html" class="nav-item nav-link">Products</a>
+                            <a href="-detail.html" class="nav-item nav-link"> Detail</a>
                             <a href="cart.html" class="nav-item nav-link">Cart</a>
                             <a href="checkout.html" class="nav-item nav-link">Checkout</a>
                             <a href="my-account.html" class="nav-item nav-link">My Account</a>
@@ -62,7 +62,7 @@
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="wishlist.html" class="dropdown-item active">Wishlist</a>
-                                    <!-- <a href="login.html" class="dropdown-item">Login & Register</a> -->
+                                    <a href="about.html" class="dropdown-item">About Us</a>
                                     <a href="contact.html" class="dropdown-item">Contact Us</a>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item"><a href="#">s</a></li>
                     <li class="breadcrumb-item active">Wishlist</li>
                 </ul>
             </div>
@@ -149,11 +149,11 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="img/product-6.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="img/" alt="Image"></a>
+                                                    <p></p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td></td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -167,11 +167,11 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="img/product-7.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="" alt="Image"></a>
+                                                    <p></p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td></td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -185,11 +185,11 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="img/product-8.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="img/-8.jpg" alt="Image"></a>
+                                                    <p></p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td></td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -203,11 +203,11 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="img/product-9.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="img/-9.jpg" alt="Image"></a>
+                                                    <p></p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td></td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -221,11 +221,11 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="img/product-10.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="img/-10.jpg" alt="Image"></a>
+                                                    <p></p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td></td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -265,12 +265,8 @@
                         <div class="footer-widget">
                             <h2>Follow Us</h2>
                             <div class="contact-info">
-                                <div class="social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                <div class="social">                                  
+                                    <a href="https://www.facebook.com/motoragonbikeshop"><i class="fab fa-facebook-f"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -373,8 +369,8 @@ function updateUI(user) {
 
                 // Rest of the code
                 userAccountSection.innerHTML = `
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hi ${username || "Default"}</a>
+                <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome ${username || "Default"}</a>
                         <div class="dropdown-menu">
                             <a href="#" class="dropdown-item" id="logoutBtn">Sign Out</a>
                         </div>
