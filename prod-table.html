@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <!-- CSS File-->
+    <link rel="stylesheet" href="css/prod-admin.css" />
+    <!-- Title section -->
+    <title>Create, Read, Update, and Delete products</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FONTAWESOME CSS ICON-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      #updateForm {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="table-container"></div>
+    <div id="updateForm">
+      <input type="text" id="updateTitle" placeholder="Product Title" />
+      <input type="text" id="updateCategory" placeholder="Category" />
+      <input type="text" id="updateDescription" placeholder="Description" />
+      <input type="text" id="updatePrice" placeholder="Price" />
+      <input type="text" id="updateStock" placeholder="Stock" />
+      <button id="updateSubmit">Update Product</button>
+    </div>
+  </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getStorage,
+      ref as sRef,
+      uploadBytesResumable,
+      getDownloadURL,
+      deleteObject,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+    //Firebase Realtime Database
+    import {
+      getDatabase,
+      ref,
+      set,
+      child,
+      get,
+      update,
+      remove,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDAwlRuUI6XE9yJqh30UFwbfF7dusvkrfg",
+      authDomain: "authentication-8a811.firebaseapp.com",
+      databaseURL: "https://authentication-8a811-default-rtdb.firebaseio.com",
+      projectId: "authentication-8a811",
+      storageBucket: "authentication-8a811.appspot.com",
+      messagingSenderId: "421435285777",
+      appId: "1:421435285777:web:912a5aabaceca6fb54ecb0",
+      measurementId: "G-BFJ5J6MW02"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const realdb = getDatabase();
+
+    function readProductData(productRef) {
+      get(productRef)
+        .then((snapshot) => {
+          // Data is retrieved successfully
+          const productData = snapshot.val();
+          console.log("Product Data:", productData);
+
+          // Display the data in an HTML table
+          displayDataInTable(productData);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error reading product data:", error);
+        });
+      return productRef;
+    }
+
+    function displayDataInTable(productData) {
+      console.log("Product Data:", productData);
+
+      const tableContainer = document.getElementById("table-container");
+      const table = document.createElement("table");
+      const row = table.insertRow();
+
+      table.innerHTML =
+        "<tr><th>Product Title</th><th>Category</th><th>Description</th><th>Price</th><th>Stock</th><th>Image Links</th><th>Update</th><th>Delete</th></tr>";
+
+      if (productData) {
+        // Iterate over each product in productData
+        for (const productId in productData) {
+          if (Object.hasOwnProperty.call(productData, productId)) {
+            const product = productData[productId];
+
+            const row = table.insertRow();
+            row.insertCell(0).textContent = product.ProductTitle || "-";
+            row.insertCell(1).textContent = product.Category || "-";
+            row.insertCell(2).textContent = product.Description || "-";
+            row.insertCell(3).textContent = product.Price || "-";
+            row.insertCell(4).textContent = product.Stock || "-";
+
+            // Create an image cell
+            const imageCell = row.insertCell(5);
+
+            // Check if LinksOfImagesArray exists and is an array
+            if (
+              Array.isArray(product.LinksOfImagesArray) &&
+              product.LinksOfImagesArray.length > 0
+            ) {
+              // Iterate over image links and create <img> elements
+              for (const imageLink of product.LinksOfImagesArray) {
+                const imgElement = document.createElement("img");
+                imgElement.src = imageLink;
+                imgElement.alt = "Product Image";
+                imgElement.style.maxWidth = "220px"; // Adjust the image size as needed
+                imageCell.appendChild(imgElement);
+              }
+            } else {
+              // Display a placeholder if no image links are available
+              imageCell.textContent = "-";
+            }
+
+            // Create a delete button cell
+            const deleteCell = row.insertCell(6);
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", function () {
+              // Call the delete function with the product ID and the product data
+              deleteProduct(productId, product);
+            });
+            deleteCell.appendChild(deleteButton);
+
+            // Create an update button cell
+            const updateCell = row.insertCell(6);
+            const updateButton = document.createElement("button");
+            updateButton.textContent = "Update";
+            updateButton.addEventListener("click", function () {
+              // Call the openUpdateForm function with the product ID and the product data
+              openUpdateForm(productId, product);
+            });
+            updateCell.appendChild(updateButton);
+          }
+        }
+      } else {
+        const row = table.insertRow();
+        row.insertCell(0).textContent = "No data available";
+        row.setAttribute("colspan", "7"); // Adjust the colspan to include the delete button column
+      }
+
+      tableContainer.innerHTML = ""; // Clear previous content
+      tableContainer.appendChild(table);
+    }
+
+    function openUpdateForm(productId, product) {
+      // Assuming you have a form or modal with ID "updateForm"
+      const updateForm = document.getElementById("updateForm");
+
+      // Check if the form element is found
+      if (!updateForm) {
+        console.error("Update form not found");
+        return;
+      }
+
+      // Assuming you have input fields with IDs like "updateTitle", "updateCategory", etc.
+      const updateTitleInput = document.getElementById("updateTitle");
+      const updateCategoryInput = document.getElementById("updateCategory");
+      const updateDescriptionInput =
+        document.getElementById("updateDescription");
+      const updatePriceInput = document.getElementById("updatePrice");
+      const updateStockInput = document.getElementById("updateStock");
+
+      // Check if any of the input elements are not found
+      if (
+        !updateTitleInput ||
+        !updateCategoryInput ||
+        !updateDescriptionInput ||
+        !updatePriceInput ||
+        !updateStockInput
+      ) {
+        console.error("One or more update form elements not found");
+        return;
+      }
+
+      // Set the current product data in the form fields
+      updateTitleInput.value = product.ProductTitle || "";
+      updateCategoryInput.value = product.Category || "";
+      updateDescriptionInput.value = product.Description || "";
+      updatePriceInput.value = product.Price || "";
+      updateStockInput.value = product.Stock || "";
+
+      // Assuming you have a button with ID "updateSubmit" in the form
+      const updateSubmitButton = document.getElementById("updateSubmit");
+
+      // Check if the submit button is not found
+      if (!updateSubmitButton) {
+        console.error("Update submit button not found");
+        return;
+      }
+
+      // Add an event listener to the submit button to handle the update
+      updateSubmitButton.addEventListener("click", function () {
+        const newData = {
+          ProductTitle: updateTitleInput.value,
+          Category: updateCategoryInput.value,
+          Description: updateDescriptionInput.value,
+          Price: updatePriceInput.value,
+          Stock: updateStockInput.value,
+        };
+
+        // Call the updateProduct function with the new data
+        updateProduct(productId, newData);
+
+        // Toggle the visibility of the update form
+        updateForm.style.display =
+          updateForm.style.display === "block" ? "none" : "block";
+      });
+
+      // Display the update form or modal
+      updateForm.style.display = "block";
+    }
+
+    function deleteProduct(productId, product) {
+      const productRef = ref(realdb, "TheProductRealdb/" + productId);
+      const storageRef = getStorage(); // Use getStorage() to get the storage reference
+
+      // Retrieve the LinksOfImagesArray from the product
+      const imageLinks = product.LinksOfImagesArray || [];
+
+      // Remove the product data from the database
+      remove(productRef)
+        .then(() => {
+          console.log("Product deleted successfully");
+          // Remove each image from storage
+          const deleteImagePromises = imageLinks.map((imageLink) => {
+            // Extract the image path from the link
+            const imagePath = imageLink.split("?")[0];
+
+            // Create a reference to the image in storage
+            const imageStorageRef = sRef(storageRef, imagePath); // Use sRef() here
+
+            // Delete the image from storage and return a promise
+            return deleteObject(imageStorageRef);
+          });
+
+          // Wait for all image deletion promises to resolve
+          Promise.all(deleteImagePromises)
+            .then(() => {
+              console.log("All images deleted successfully");
+
+              // Optionally, you can reload the table after deletion
+              const specificProductRef = ref(realdb, "TheProductRealdb");
+              readProductData(specificProductRef);
+              alert("Product deleted successfully");
+            })
+            .catch((error) => {
+              console.error("Error deleting images:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error deleting product:", error);
+        });
+    }
+
+    function updateProduct(productId, newData) {
+      const productRef = ref(realdb, "TheProductRealdb/" + productId);
+
+      // Update the product data in the database
+      update(productRef, newData)
+        .then(() => {
+          console.log("Product updated successfully");
+
+          // Optionally, you can reload the table after update
+          const specificProductRef = ref(realdb, "TheProductRealdb");
+          readProductData(specificProductRef);
+          alert("Product updated successfully");
+        })
+        .catch((error) => {
+          console.error("Error updating product:", error);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Add the CSS styling to hide the update form initially
+      const updateForm = document.getElementById("updateForm");
+      if (updateForm) {
+        updateForm.style.display = "none";
+      }
+
+      const specificProductRef = ref(realdb, "TheProductRealdb/");
+      readProductData(specificProductRef);
+    });
+  </script>
+</html>
