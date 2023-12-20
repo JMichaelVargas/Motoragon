@@ -370,7 +370,7 @@ function updateUI(user) {
                 // Rest of the code
                 userAccountSection.innerHTML = `
                 <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome ${username || "Default"}</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome ${username || "Guest"}</a>
                         <div class="dropdown-menu">
                             <a href="#" class="dropdown-item" id="logoutBtn">Sign Out</a>
                         </div>
@@ -389,7 +389,7 @@ function updateUI(user) {
         // User is not logged in
         userAccountSection.innerHTML = `
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome Guest</a>
                 <div class="dropdown-menu">
                     <a href="signup.html" class="dropdown-item">Register</a>
                 </div>
