@@ -113,7 +113,7 @@
             <!-- CRUD START -->
             <div class="adding_section">
                 <div class="adding_container">
-                    <div class="prod-admin_title">Add Products</div>
+                    <div class="prod-admin_title"><h1>Add Products</h1></div>
                     <div class="prod_inputs"><label>Product Name</label> <input type="text" id="nameinp"></div>
                     <div class="prod_inputs"><label>Product Price</label> <input type="text" id="priceinp"></div>
                     <div class="prod_inputs"><label>Stock</label> <input type="text" id="stockinp"></div>
@@ -436,6 +436,22 @@
         const app = initializeApp(firebaseConfig);
         const realdb = getDatabase();
 
+        function clearFormFields() {
+        name.value = '';
+        price.value = '';
+        stock.value = '';
+        category.value = 'New Arrival'; // Assuming 'New Arrival' is the default category
+        description.value = '';
+        ClearImages(); // Clear uploaded images
+    }
+
+    // Function to handle successful upload
+    function handleUploadSuccess() {
+        alert("Upload Successful");
+        clearFormFields(); // Call the function to clear form fields
+        RestoreBack();
+    }
+
 
         //Upload a Product
         function UploadAProduct(){
@@ -448,10 +464,10 @@
                 Price: price.value,
                 Stock: stock.value,
                 LinksOfImagesArray: ImagesLinksArray
-            });
-
-            alert("Upload Successful");
-            RestoreBack();
+            }).then(() => {
+            handleUploadSuccess(); // Call the function to handle successful upload
+        });
+            
             return productRef;
         }
 
