@@ -103,7 +103,7 @@
                             </a>
                             <a href="cart.html" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span id="cartCounter">0</span>
+                                <span id="cartCounter">(0)</span>
                             </a>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                                         </div>
                                         <div class="cart-btn">
                                             <button onclick="updateCart()">Update Cart</button>
-                                            <button>Checkout</button>
+                                            <button id="checkoutButton" onclick="checkout()" disabled>Checkout</button>
                                         </div>
                                     </div>
                                 </div>
@@ -380,7 +380,7 @@ function updateCartUI(cartData) {
                 <td>${cartItem.productData.ProductTitle}</td>
                 <td>${cartItem.productData.Price}</td>
                 <td>
-                    <div class="qty">
+                        <div class="qty">
                         <button class="btn-minus" onclick="updateQuantity('${productId}', -1)"><i class="fa fa-minus"></i></button>
                         <input type="text" value="${cartItem.quantity}" id="quantity-${productId}" readonly>
                         <button class="btn-plus" onclick="updateQuantity('${productId}', 1)"><i class="fa fa-plus"></i></button>
@@ -419,10 +419,30 @@ function updateCartUI(cartData) {
         console.log("Removing overflow class");
         cartTableBody.classList.remove('cart-overflow');
     }
+
+    const user = auth.currentUser;
+    const checkoutButton = document.getElementById('checkoutButton');
+    if (user) {
+        // User is logged in, enable the checkout button
+        checkoutButton.removeAttribute('disabled');
+    } else {
+        // User is not logged in, disable the checkout button
+        checkoutButton.setAttribute('disabled', 'true');
+    }
 }
 
+window.checkout = function () {
+    const user = auth.currentUser;
 
+    if (user) {
+        // User is logged in, proceed with the checkout process
+        alert('Checkout process initiated. Redirecting to checkout page...');
+        // window.location.replace('https://www.messenger.com/t/100003724172383');
 
+    } else {
+        alert('Please log in before proceeding to checkout.');
+    }
+}
 
 // Function to remove an item from the cart
 window.removeCartItem = function (productId) {

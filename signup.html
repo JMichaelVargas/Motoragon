@@ -78,11 +78,15 @@
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         var username = document.getElementById('username').value;
+        console.log("Email:", email);
+        console.log("Password:", password);
+        console.log("Username:", username);
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
         // Signed up 
             const user = userCredential.user;
+            console.log("User object:", user);
 
             set(ref(database, 'users/' + user.uid),{
                     username: username,
@@ -91,7 +95,7 @@
                     lastlogin: new Date().toString()
             })
             alert('User created!');
-            window.location.replace('login.html');
+            // window.location.replace('login.html');
         // ...
         })
         .catch((error) => {
