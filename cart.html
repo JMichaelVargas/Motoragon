@@ -103,7 +103,7 @@
                             </a>
                             <a href="cart.html" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>(0)</span>
+                                <span id="cartCounter">0</span>
                             </a>
                         </div>
                     </div>
@@ -134,105 +134,17 @@
                                 <table class="table table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Product</th>
+                                            <th id="cart-product-image">Product</th>
+                                            <th>Name</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
                                             <th>Total</th>
                                             <th>Remove</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tbody class="align-middle" id="cart-items">
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="img/product-1.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="img/product-2.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="img/product-3.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="img/product-4.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="img/product-5.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                    </tbody> -->
+                                    <tbody id="cartTableBody">
+                                        <!-- Cart items will be dynamically added here -->
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -250,12 +162,12 @@
                                     <div class="cart-summary">
                                         <div class="cart-content">
                                             <h1>Cart Summary</h1>
-                                            <p>Sub Total<span></span></p>
-                                            <p>Shipping Cost<span></span></p>
-                                            <h2>Grand Total<span></span></h2>
+                                            <p>Sub Total<span id="subTotal"></span></p>
+                                            <p>Shipping Cost<span id="shippingCost"></span></p>
+                                            <h2>Grand Total<span id="grandTotal"></span></h2>
                                         </div>
                                         <div class="cart-btn">
-                                            <button>Update Cart</button>
+                                            <button onclick="updateCart()">Update Cart</button>
                                             <button>Checkout</button>
                                         </div>
                                     </div>
@@ -349,29 +261,51 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
         <script type="module">
-            // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+// import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import {
+      getStorage,
+      ref as sRef,
+      uploadBytesResumable,
+      getDownloadURL,
+      deleteObject,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+    import {
+      getDatabase,
+      ref,
+      set,
+      child,
+      get,
+      update,
+      remove,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDAwlRuUI6XE9yJqh30UFwbfF7dusvkrfg",
-  authDomain: "authentication-8a811.firebaseapp.com",
-  databaseURL: "https://authentication-8a811-default-rtdb.firebaseio.com",
-  projectId: "authentication-8a811",
-  storageBucket: "authentication-8a811.appspot.com",
-  messagingSenderId: "421435285777",
-  appId: "1:421435285777:web:912a5aabaceca6fb54ecb0",
-  measurementId: "G-BFJ5J6MW02"
+    apiKey: "AIzaSyDAwlRuUI6XE9yJqh30UFwbfF7dusvkrfg",
+    authDomain: "authentication-8a811.firebaseapp.com",
+    databaseURL: "https://authentication-8a811-default-rtdb.firebaseio.com",
+    projectId: "authentication-8a811",
+    storageBucket: "authentication-8a811.appspot.com",
+    messagingSenderId: "421435285777",
+    appId: "1:421435285777:web:912a5aabaceca6fb54ecb0",
+    measurementId: "G-BFJ5J6MW02"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database = getDatabase(app);
+const realdb = getDatabase(app);
 const userAccountSection = document.getElementById('userAccountSection');
+const cartTableBody = document.getElementById('cartTableBody');
+const subTotalElement = document.getElementById('subTotal');
+const shippingCostElement = document.getElementById('shippingCost');
+const grandTotalElement = document.getElementById('grandTotal');
+const cartCounterElement = document.getElementById('cartCounter');
 
 // Function to update UI based on user login status
 // Inside the updateUI function in index.html
@@ -383,7 +317,7 @@ function updateUI(user) {
         const uid = user.uid;
         console.log("User UID:", uid);
 
-        const usernameRef = ref(database, `users/${uid}/username`);
+        const usernameRef = ref(realdb, `users/${uid}/username`);
         get(usernameRef)
             .then((snapshot) => {
                 const username = snapshot.val();
@@ -391,7 +325,7 @@ function updateUI(user) {
 
                 // Rest of the code
                 userAccountSection.innerHTML = `
-                    <div class="nav-item dropdown">
+                <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome ${username || "Guest"}</a>
                         <div class="dropdown-menu">
                             <a href="#" class="dropdown-item" id="logoutBtn">Sign Out</a>
@@ -425,6 +359,162 @@ onAuthStateChanged(auth, (user) => {
     updateUI(user);
 });
 
+// Function to update cart UI based on cart data
+function updateCartUI(cartData) {
+    cartTableBody.innerHTML = ''; // Clear existing cart items
+
+    let subTotal = 0;
+    let totalItems = 0; // Add this line
+
+    for (const productId in cartData) {
+        if (Object.hasOwnProperty.call(cartData, productId)) {
+            const cartItem = cartData[productId];
+            const total = cartItem.quantity * cartItem.productData.Price;
+
+            subTotal += total;
+            totalItems += cartItem.quantity;
+
+            const cartRow = document.createElement('tr');
+            cartRow.innerHTML = `
+                <td><img src="${cartItem.productData.LinksOfImagesArray[0]}" alt="${cartItem.productData.ProductTitle}" class="cart-product-image"></td>
+                <td>${cartItem.productData.ProductTitle}</td>
+                <td>${cartItem.productData.Price}</td>
+                <td>
+                    <div class="qty">
+                        <button class="btn-minus" onclick="updateQuantity('${productId}', -1)"><i class="fa fa-minus"></i></button>
+                        <input type="text" value="${cartItem.quantity}" id="quantity-${productId}" readonly>
+                        <button class="btn-plus" onclick="updateQuantity('${productId}', 1)"><i class="fa fa-plus"></i></button>
+                    </div>
+                </td>
+                <td>${total}</td>
+                <td><button onclick="removeCartItem('${productId}')"><i class="fa fa-trash"></i></button></td>
+            `;
+
+            cartTableBody.appendChild(cartRow);
+        }
+    }
+
+    subTotalElement.textContent = subTotal;
+    cartCounterElement.textContent = `(${totalItems})`;
+
+    let shippingCost = 0;
+
+    if (subTotal > 10000) {
+        shippingCost = 500; 
+    } else if (subTotal > 7000) {
+        shippingCost = 250;
+    }
+
+    shippingCostElement.textContent = shippingCost;
+
+    // Calculate grand total
+    const grandTotal = subTotal + shippingCost;
+    grandTotalElement.textContent = grandTotal;
+
+    console.log("Total Items:", totalItems);
+    if (totalItems > 2) {
+        console.log("Adding overflow class");
+        cartTableBody.classList.add('cart-overflow');
+    } else {
+        console.log("Removing overflow class");
+        cartTableBody.classList.remove('cart-overflow');
+    }
+}
+
+
+
+
+// Function to remove an item from the cart
+window.removeCartItem = function (productId) {
+    const user = auth.currentUser;
+
+    if (user) {
+        const uid = user.uid;
+        const cartRef = ref(realdb, `users/${uid}/cart/${productId}`);
+
+        remove(cartRef)
+            .then(() => {
+                console.log(`Product '${productId}' removed from the cart`);
+                updateCart(); 
+            })
+            .catch((error) => {
+                console.error('Error removing product from cart:', error);
+            });
+    }
+}
+
+// Function to update the cart (triggered on button click)
+window.updateCart = function () {
+    const user = auth.currentUser;
+
+    if (user) {
+        const uid = user.uid;
+        const cartRef = ref(realdb, `users/${uid}/cart`);
+
+        get(cartRef)
+            .then((snapshot) => {
+                const cartData = snapshot.val();
+                updateCartUI(cartData);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
+}
+
+// Check user login status on page load
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const uid = user.uid;
+        const cartRef = ref(realdb, `users/${uid}/cart`);
+
+        // Listen for changes in the cart data
+        onValue(cartRef, (snapshot) => {
+            const cartData = snapshot.val();
+            updateCartUI(cartData);
+        });
+    } else {
+        // User is not logged in. Handle accordingly.
+        console.log('User is not logged in');
+    }
+});
+
+window.updateQuantity = function (productId, change) {
+    const quantityElement = document.getElementById(`quantity-${productId}`);
+    const currentQuantity = parseInt(quantityElement.value, 10);
+
+    if (currentQuantity + change > 0) {
+        // Update the quantity input
+        quantityElement.value = currentQuantity + change;
+
+        // Update the quantity in the cart data
+        const user = auth.currentUser;
+        if (user) {
+            const uid = user.uid;
+            const cartRef = ref(realdb, `users/${uid}/cart`);
+            const cartItemRef = child(cartRef, productId);
+
+            // Fetch the existing cart item
+            get(cartItemRef)
+                .then((cartSnapshot) => {
+                    const existingCartItem = cartSnapshot.val();
+                    if (existingCartItem) {
+                        const newQuantity = currentQuantity + change;
+                        const newTotal = existingCartItem.productData.Price * newQuantity;
+
+                        // Update the quantity and total in the cart
+                        update(cartItemRef, { quantity: newQuantity });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error updating quantity:', error);
+                });
+        }
+
+        // Update the UI
+        updateCartUI(getCartData());
+    }
+}
         </script>
     </body>
     <footer>

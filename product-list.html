@@ -379,6 +379,51 @@ function renderProductData(container, productId, productData) {
 
     // Append the product element to the container
     container.appendChild(productElement);
+    const addButton = productElement.querySelector('.addcart-btn');
+    addButton.addEventListener('click', () => {
+        alert('Product added to cart');
+        addToCart(productId);
+    });
+}
+
+function addToCart(productId) {
+    // Retrieve the product details based on the productId
+    const productRef = ref(realdb, `TheProductRealdb/${productId}`);
+    console.log('addToCart function called');
+    
+    get(productRef)
+        .then((snapshot) => {
+            const productData = snapshot.val();
+            
+            // Add the product to the user's cart in Firebase
+            const user = auth.currentUser;
+            if (user) {
+                const uid = user.uid;
+                const cartRef = ref(realdb, `users/${uid}/cart`);
+                
+                // Check if the product is already in the cart
+                get(child(cartRef, productId))
+                    .then((cartSnapshot) => {
+                        const existingCartItem = cartSnapshot.val();
+                        const quantity = existingCartItem ? existingCartItem.quantity + 1 : 1;
+                        
+                        // Update or add the product to the cart
+                        set(child(cartRef, productId), { quantity, productData });
+                        
+                        // Optionally, you can display a success message or update the UI
+                        console.log(`Product '${productId}' added to the cart`);
+                    })
+                    .catch((error) => {
+                        console.error('Error checking cart:', error);
+                    });
+            } else {
+                // User is not logged in. Handle accordingly (e.g., prompt to log in)
+                console.log('User is not logged in');
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching product details:', error);
+        });
 }
 
 function displayDataInCards(productData) {
