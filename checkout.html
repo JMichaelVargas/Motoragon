@@ -54,14 +54,14 @@
                         <div class="navbar-nav mr-auto">
                             <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="product-list.html" class="nav-item nav-link">Products</a>
-                            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
+                            <!-- <a href="product-detail.html" class="nav-item nav-link">Product Detail</a> -->
                             <a href="cart.html" class="nav-item nav-link">Cart</a>
                             <a href="checkout.html" class="nav-item nav-link active">Checkout</a>
                             <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
-                                    <a href="wishlist.html" class="dropdown-item">Wishlist</a>
+                                    <!-- <a href="wishlist.html" class="dropdown-item">Wishlist</a> -->
                                     <a href="about.html" class="dropdown-item">About Us</a>
                                     <a href="contact.html" class="dropdown-item">Contact Us</a>
                                 </div>
@@ -97,10 +97,10 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
-                            <a href="wishlist.html" class="btn wishlist">
+                            <!-- <a href="wishlist.html" class="btn wishlist">
                                 <i class="fa fa-heart"></i>
                                 <span>(0)</span>
-                            </a>
+                            </a> -->
                             <a href="cart.html" class="btn cart" id="cartIcon">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span id="cartCounter">(0)</span>
@@ -235,11 +235,11 @@
                         <div class="checkout-inner">
                             <div class="checkout-summary">
                                 <h1>Cart Total</h1>
-                                <p>Product Name<span></span></p>
-                                <p class="sub-total">Sub Total<span></span></p>
-                                <p class="ship-cost">Shipping Cost<span></span></p>
-                                <h2>Grand Total<span></span></h2>
-                            </div>
+                                <p>Product Name<span id="productName"></span></p>
+                                <p>Sub Total<span id="subTotal"></span></p>
+                                <p>Shipping Cost<span id="shippingCost"></span></p>
+                                <h2>Grand Total<span id="grandTotal"></span></h2>
+                            </div>                       
 
                             <div class="checkout-payment">
                                 <div class="payment-methods">
@@ -301,7 +301,7 @@
                                     </div>
                                 </div>
                                 <div class="checkout-btn">
-                                    <button>Place Order</button>
+                                    <button id="placeOrderBtn">Place Order</button>
                                 </div>
                             </div>
                         </div>
@@ -310,6 +310,26 @@
             </div>
         </div>
         <!-- Checkout End -->
+
+        <!-- Modal -->
+<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="thankYouModalLabel">Thank You for Your Order!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your order has been successfully placed. We appreciate your business!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
         
         <!-- Footer Start -->
         <div class="footer">
@@ -422,9 +442,13 @@
             const app = initializeApp(firebaseConfig);
             const auth = getAuth(app);
             const database = getDatabase(app);
-            const userAccountSection = document.getElementById("userAccountSection");
+            const cartTableBody = document.getElementById('cartTableBody');
+            const subTotalElement = document.getElementById('subTotal');
+            const shippingCostElement = document.getElementById('shippingCost');
+            const grandTotalElement = document.getElementById('grandTotal');
             const cartCounterElement = document.getElementById('cartCounter');
-      
+            const productNameElement = document.getElementById('productName'); // Added this line
+                
             // Function to update UI based on user login status
             // Inside the updateUI function in index.html
             // Function to update UI based on user login status
@@ -481,40 +505,104 @@
             onAuthStateChanged(auth, (user) => {
               updateUI(user);
             });
-      
-            function updateCartCounter(user) {
-          if (user) {
-            // User is logged in, update the cart counter based on their cart data
-            const uid = user.uid;
-            const cartRef = ref(database, `users/${uid}/cart`);
-      
-            get(cartRef)
-              .then((snapshot) => {
-                const cartData = snapshot.val();
-                let totalItems = 0;
-      
-                for (const productId in cartData) {
-                  if (Object.hasOwnProperty.call(cartData, productId)) {
-                    const cartItem = cartData[productId];
-                    totalItems += cartItem.quantity;
-                  }
-                }
-      
-                cartCounterElement.textContent = `(${totalItems})`;
-              })
-              .catch((error) => {
-                console.error('Error fetching cart data:', error);
-              });
-          } else {
-            // User is not logged in, set the cart counter to 0
-            cartCounterElement.textContent = '(0)';
-          }
+
+            // Function to fetch cart data
+  function getCartData() {
+    const user = auth.currentUser;
+
+    if (user) {
+      const uid = user.uid;
+      const cartRef = ref(database, `users/${uid}/cart`);
+
+      return get(cartRef).then((snapshot) => snapshot.val() || {});
+    }
+
+    return Promise.resolve({});
+  }
+
+   // Function to update the checkout summary based on cart data
+   function updateCheckoutSummary(cartData) {
+    productNameElement.innerHTML = ''; // Clear existing product names
+    subTotalElement.textContent = '';
+    shippingCostElement.textContent = '';
+    grandTotalElement.textContent = '';
+
+    let subTotal = 0;
+    const productNames = [];
+
+    for (const productId in cartData) {
+        if (Object.hasOwnProperty.call(cartData, productId)) {
+            const cartItem = cartData[productId];
+            const total = cartItem.quantity * cartItem.productData.Price;
+
+            subTotal += total;
+
+            // Collect product names
+            productNames.push(cartItem.productData.ProductTitle);
         }
-      
-        // Check user login status on page load
-        onAuthStateChanged(auth, (user) => {
-          updateCartCounter(user);
+    }
+
+    // Update product name element
+    productNameElement.textContent = productNames.join(', ');
+
+    subTotalElement.textContent = subTotal;
+
+    let shippingCost = 0;
+
+    if (subTotal > 10000) {
+        shippingCost = 500;
+    } else if (subTotal > 7000) {
+        shippingCost = 250;
+    }
+
+    shippingCostElement.textContent = shippingCost;
+
+    const grandTotal = subTotal + shippingCost;
+    grandTotalElement.textContent = grandTotal;
+}
+
+   
+    // Function to update cart counter
+  function updateCartCounter(user) {
+    if (user) {
+      const uid = user.uid;
+      const cartRef = ref(database, `users/${uid}/cart`);
+
+      get(cartRef)
+        .then((snapshot) => {
+          const cartData = snapshot.val() || {};
+          let totalItems = 0;
+
+          for (const productId in cartData) {
+            if (Object.hasOwnProperty.call(cartData, productId)) {
+              const cartItem = cartData[productId];
+              totalItems += cartItem.quantity;
+            }
+          }
+
+          cartCounterElement.textContent = `(${totalItems})`;
+        })
+        .catch((error) => {
+          console.error('Error fetching cart data:', error);
         });
+
+      // Fetch cart data and update checkout summary
+      getCartData()
+        .then((cartData) => {
+          updateCheckoutSummary(cartData);
+        })
+        .catch((error) => {
+          console.error('Error fetching cart data:', error);
+        });
+    } else {
+      cartCounterElement.textContent = '(0)';
+    }
+  }
+
+  // Check user login status on page load
+  onAuthStateChanged(auth, (user) => {
+    updateCartCounter(user);
+  });
           </script>
     </body>
     <footer>
