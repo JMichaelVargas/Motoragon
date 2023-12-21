@@ -136,10 +136,10 @@
                     <label id="mtb-tab" for="mtb">Mountain Bikes</label>
                     <label id="kiddie-tab" for="kiddie">Kiddie Bikes</label>
                 </div>
-                <div class="prod_container">
-                    <div class="card_container" id="new-cards">
-
-                    </div>
+                <div class="prod_container" id="prod_id">
+                    <div class="card_container" id="new-cards"></div>
+                    <div class="card_container" id="mtb-cards"></div>
+                    <div class="card_container" id="kiddie-cards"></div>
                 </div>
             </div>
         </div>
@@ -351,26 +351,42 @@ function readProductData(productRef) {
 }
 
 function renderProductData(container, productId, productData) {
-    
     const productElement = document.createElement('div');
-    productElement.classList.add();
+    productElement.classList.add('card_container');
+    
+    // Determine the category ID based on productData.Category
+    let categoryId;
+    switch (productData.Category) {
+        case 'New Arrival':
+            categoryId = 'new-cards';
+            break;
+        case 'Mountain Bikes':
+            categoryId = 'mtb-cards';
+            break;
+        case 'Kiddie Bikes':
+            categoryId = 'kiddie-cards';
+            break;
+        default:
+            categoryId = 'other-cards'; // Use a default category ID if needed
+            break;
+    }
+
+    productElement.id = categoryId;
     productElement.innerHTML = `
-        <div class="card_container" id="new-cards">
-            <div class="cards_prod">
-                <div class="card_img">
-                    <img src="${productData.LinksOfImagesArray[0]}" alt="${productData.ProductTitle}" class="new_pic">
+        <div class="cards_prod">
+            <div class="card_img">
+                <img src="${productData.LinksOfImagesArray[0]}" alt="${productData.ProductTitle}" class="new_pic">
+            </div>
+            <div class="card_details_container">
+                <div class="card_details">
+                    <div class="card_title">${productData.ProductTitle}</div>
+                    <div class="card_mini_title">&#8369 ${productData.Price}</div>
+                    <p class="card_desc">
+                        ${productData.Description}
+                    </p>
                 </div>
-                <div class="card_details_container">
-                    <div class="card_details">
-                        <div class="card_title">${productData.ProductTitle}</div>
-                        <div class="card_mini_title">&#8369 ${productData.Price}</div>
-                        <p class="card_desc">
-                            ${productData.Description}
-                        </p>
-                    </div>
-                    <div class="addcart">
-                        <button class="addcart-btn" type="button">Add to Cart</button>
-                    </div>
+                <div class="addcart">
+                    <button class="addcart-btn" type="button">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -378,8 +394,8 @@ function renderProductData(container, productId, productData) {
 
     // TODO: Add event listeners or additional functionality as needed
 
-    // Append the product element to the container
-    container.appendChild(productElement);
+    // Append the product element to the specified container
+    document.getElementById(categoryId).appendChild(productElement);
     const addButton = productElement.querySelector('.addcart-btn');
     addButton.addEventListener('click', () => {
         // alert('Product added to cart');
@@ -433,7 +449,7 @@ function addToCart(productId) {
 }
 
 function displayDataInCards(productData) {
-    const container = document.getElementById('new-cards');
+    const container = document.getElementById('prod_id');
 
     if (productData) {
         // Iterate over each product in productData
@@ -443,6 +459,7 @@ function displayDataInCards(productData) {
                 
                 // Call the renderProductData function for each product
                 renderProductData(container, productId, product);
+
             }
         }
     } else {

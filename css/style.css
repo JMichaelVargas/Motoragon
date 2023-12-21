@@ -2209,6 +2209,11 @@ h2 {
 }
 .prod_container{
     padding: 4rem 0rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2px;
+    gap: 2rem;
 }
 .title_prod{
     padding: 3rem 0px;
@@ -2342,7 +2347,12 @@ h2 {
     color: #fe0007;
     transition: 0.4s ease-in-out;
 }
-
+@media (max-width: 600px) {
+    .prod_selection_container{
+        gap: 1rem;
+        font-size: 15px;
+    }
+  }
 
 
 /**********************************/
