@@ -2259,7 +2259,7 @@ h2 {
 }
 .cards_prod{
     background-color: white;
-    height: 450px;
+    height: 460px;
     width: 335px;
     box-shadow: 0 0 7px #dbdbdb;
     display: grid;
@@ -2348,9 +2348,15 @@ h2 {
     transition: 0.4s ease-in-out;
 }
 @media (max-width: 600px) {
+    .title_prod{
+        padding: 2.5rem 0 1.5rem 0;
+    }
     .prod_selection_container{
         gap: 1rem;
         font-size: 15px;
+    }
+    .prod_container{
+        padding: 2rem 0rem;
     }
   }
 
