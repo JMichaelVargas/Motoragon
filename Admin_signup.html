@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Motoragon</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="eCommerce HTML Template Free Download" name="keywords">
+        <meta content="eCommerce HTML Template Free Download" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/slick/slick.css" rel="stylesheet">
+        <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="css/signup.css">
+    </head>
+
+    <body class="goto-here">
+
+        <div class="main">
+
+            <div class="signup_section">
+                <div class="signup_container">
+                    <div class="signup_content">
+                        <div class="signup_title">Sign Up as Admin</div>
+                        <input class="textbox" type="text" id="username" name="username" placeholder="Username" />
+                        <input class="textbox" type="text" id="email" name="email" placeholder="E-mail" />
+                        <input class="textbox" type="password" id="password" name="password" placeholder="Password" /><br>
+                        <input class="signup-btn" type="submit" id="signUp" name="signup_submit" value="Sign Up" />
+            
+                        <p class="signup_text">Already have an account <a class ="signup_link" href="login.html">Login Here.</a></p>
+                        <!-- <p class="signup_text"><a class ="signup_link" href="index.html">Return to Home.</a></p> -->
+                    </div>
+                </div>
+              </div>
+
+            <!-- Sing in  Form
+            <section class="sign-in">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
+                            <a href="#" class="signup-image-link">Create an account</a>
+                        </div>
+
+                        <div class="signin-form">
+                            <h2 class="form-title">Sign up</h2>
+                            <form method="POST" class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                    <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                </div>
+                            </form>
+                            <div class="social-login">
+                                <span class="social-label">Or login with</span>
+                                <ul class="socials">
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+        </div>
+
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+            import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+            import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+        
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+            apiKey: "AIzaSyDs1lfKYOB5--BiDaVHBWu9baIM8GHAnlo",
+            authDomain: "sample-42d4a.firebaseapp.com",
+            projectId: "sample-42d4a",
+            storageBucket: "sample-42d4a.appspot.com",
+            messagingSenderId: "508468942956",
+            appId: "1:508468942956:web:65600c02f26dfd1b1f2049"
+            };
+        
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase();
+            const auth = getAuth(app);
+
+            //initialize variables
+            let uname = document.getElementById('username');
+            let email = document.getElementById('email');
+            let password = document.getElementById('password');
+            let register_form = document.getElementById('register_form');
+
+            //fucntion to registrer user
+            let RegisterUser = evt => {
+                    evt.preventDefault();
+                    //regsiter user to db
+                    createUserWithEmailAndPassword(auth, email.value, password.value)
+
+                        .then((credentials) => {
+                            // Check if uname.value is accessible and not undefined
+                            console.log("Username:", uname.value);
+
+                            // Save username to the database
+                            set(ref(db, 'Admin/' + credentials.user.uid), {
+                                username: uname.value
+                            })
+                                .then(() => {
+                                    // Success message and redirection
+                                    console.log("Username saved successfully.");
+                                    alert("Create Account Success");
+                                    window.location.href = 'login.html';
+                                })
+                                .catch((error) => {
+                                    console.error("Error saving username:", error.message);
+                                });
+                        })
+                        .catch((error) => {
+                            alert(error.message);
+                            console.log(error.message);
+                            console.log(error.code);
+                        })
+                };
+            //trigger fucntion with submit button
+
+            register_form.addEventListener('submit', RegisterUser);
+        </script>
+
+    </body>
+
+    </html>
