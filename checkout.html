@@ -136,41 +136,41 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>First Name</label>
-                                        <input class="form-control" type="text" placeholder="First Name">
+                                        <input id="firstName" class="form-control" type="text" placeholder="First Name">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Last Name"</label>
-                                        <input class="form-control" type="text" placeholder="Last Name">
+                                        <label>Last Name</label>
+                                        <input id="lastName" class="form-control" type="text" placeholder="Last Name">
                                     </div>
                                     <div class="col-md-6">
                                         <label>E-mail</label>
-                                        <input class="form-control" type="text" placeholder="E-mail">
+                                        <input id="email" class="form-control" type="text" placeholder="E-mail">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Mobile No</label>
-                                        <input class="form-control" type="text" placeholder="Mobile No">
+                                        <input id="mobileNo" class="form-control" type="text" placeholder="Mobile No">
                                     </div>
                                     <div class="col-md-12">
                                         <label>Address</label>
-                                        <input class="form-control" type="text" placeholder="Address">
+                                        <input id="address" class="form-control" type="text" placeholder="Address">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Country</label>
-                                        <select class="custom-select">
-                                            <option selected>Phlippines</option>
+                                        <select id="country" class="custom-select">
+                                            <option selected>Philippines</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label>City</label>
-                                        <input class="form-control" type="text" placeholder="City">
+                                        <input id="city" class="form-control" type="text" placeholder="City">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Province</label>
-                                        <input class="form-control" type="text" placeholder="Province">
+                                        <input id="province" class="form-control" type="text" placeholder="Province">
                                     </div>
                                     <div class="col-md-6">
                                         <label>ZIP Code</label>
-                                        <input class="form-control" type="text" placeholder="ZIP Code">
+                                        <input id="zipCode" class="form-control" type="text" placeholder="ZIP Code">
                                     </div>
                                     <div class="col-md-12">
                                         <div class="custom-control custom-checkbox">
@@ -209,15 +209,15 @@
                                     <div id="courierServices" class="col-md-12" style="display:none;">
                                         <label>Courier Service</label>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="jntExpress" name="courierService" onclick="selectCourierService('jntExpress')">
-                                            <label class="custom-control-label" for="jntExpress">J&T Express</label>
+                                          <input type="radio" class="custom-control-input" id="jntExpress" name="courierService" value="jntExpress" onclick="selectCourierService('jntExpress')">
+                                          <label class="custom-control-label" for="jntExpress">J&T Express</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="ninjaVan" name="courierService" onclick="selectCourierService('ninjaVan')">
+                                            <input type="radio" class="custom-control-input" id="ninjaVan" name="courierService" value="ninjaVan" onclick="selectCourierService('ninjaVan')">
                                             <label class="custom-control-label" for="ninjaVan">Ninja Van</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="lbcExpress" name="courierService" onclick="selectCourierService('lbcExpress')">
+                                            <input type="radio" class="custom-control-input" id="lbcExpress" name="courierService" value="lbcExpress" onclick="selectCourierService('lbcExpress')">
                                             <label class="custom-control-label" for="lbcExpress">LBC Express</label>
                                         </div>
                                     </div>
@@ -240,35 +240,20 @@
                                     <h1>Payment Methods</h1>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-1" name="payment">
-                                            <label class="custom-control-label" for="payment-1">Gcash</label>
-                                        </div>
-                                        <div class="payment-content" id="payment-1-show">
-                                            <!-- <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p> -->
+                                            <input type="radio" class="custom-control-input" id="payment-gcash" name="payment">
+                                            <label class="custom-control-label" for="payment-gcash">Gcash</label>
                                         </div>
                                     </div>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-2" name="payment">
-                                            <label class="custom-control-label" for="payment-2">Credit Card</label>
-                                        </div>
-                                        <div class="payment-content" id="payment-2-show">
-                                            <!-- <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p> -->
+                                            <input type="radio" class="custom-control-input" id="payment-credit-card" name="payment">
+                                            <label class="custom-control-label" for="payment-credit-card">Credit Card</label>
                                         </div>
                                     </div>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-5" name="payment">
-                                            <label class="custom-control-label" for="payment-5">Cash on Delivery</label>
-                                        </div>
-                                        <div class="payment-content" id="payment-5-show">
-                                            <!-- <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p> -->
+                                            <input type="radio" class="custom-control-input" id="payment-cod" name="payment">
+                                            <label class="custom-control-label" for="payment-cod">Cash on Delivery</label>
                                         </div>
                                     </div>
                                 </div>
@@ -385,17 +370,10 @@
         <script src="js/main.js"></script>
         <script type="module">
             // Import the functions you need from the SDKs you need
+            // Import the functions you need from the SDKs you need
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-            import {
-              getAuth,
-              onAuthStateChanged,
-              signOut,
-            } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-            import {
-              getDatabase,
-              ref,
-              get,
-            } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+            import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+            import { getDatabase, ref, get, update, push } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
       
             // Your web app's Firebase configuration
             // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -419,7 +397,7 @@
             const shippingCostElement = document.getElementById('shippingCost');
             const grandTotalElement = document.getElementById('grandTotal');
             const cartCounterElement = document.getElementById('cartCounter');
-            const productNameElement = document.getElementById('productName'); // Added this line
+            const productNameElement = document.getElementById('productName');
                 
             // Function to update UI based on user login status
             // Inside the updateUI function in index.html
@@ -535,47 +513,192 @@
 
    
     // Function to update cart counter
-  function updateCartCounter(user) {
-    if (user) {
-      const uid = user.uid;
-      const cartRef = ref(database, `users/${uid}/cart`);
+function updateCartCounter(user) {
+  if (user) {
+    const uid = user.uid;
+    const cartRef = ref(database, `users/${uid}/cart`);
 
-      get(cartRef)
-        .then((snapshot) => {
-          const cartData = snapshot.val() || {};
-          let totalItems = 0;
+    get(cartRef)
+      .then((snapshot) => {
+        const cartData = snapshot.val() || {};
+        let totalItems = 0;
 
-          for (const productId in cartData) {
-            if (Object.hasOwnProperty.call(cartData, productId)) {
-              const cartItem = cartData[productId];
-              totalItems += cartItem.quantity;
-            }
+        for (const productId in cartData) {
+          if (Object.hasOwnProperty.call(cartData, productId)) {
+            const cartItem = cartData[productId];
+            totalItems += cartItem.quantity;
           }
+        }
 
-          cartCounterElement.textContent = `(${totalItems})`;
-        })
-        .catch((error) => {
-          console.error('Error fetching cart data:', error);
-        });
+        cartCounterElement.textContent = `(${totalItems})`;
+      })
+      .catch((error) => {
+        console.error('Error fetching cart data:', error);
+      });
 
-      // Fetch cart data and update checkout summary
-      getCartData()
-        .then((cartData) => {
-          updateCheckoutSummary(cartData);
-        })
-        .catch((error) => {
-          console.error('Error fetching cart data:', error);
-        });
-    } else {
-      cartCounterElement.textContent = '(0)';
-    }
+    // Fetch cart data and update checkout summary
+    getCartData()
+      .then((cartData) => {
+        updateCheckoutSummary(cartData);
+      })
+      .catch((error) => {
+        console.error('Error fetching cart data:', error);
+      });
+  } else {
+    cartCounterElement.textContent = '(0)';
   }
+}
 
   // Check user login status on page load
   onAuthStateChanged(auth, (user) => {
     updateCartCounter(user);
   });
+
+ // Function to handle the place order button click
+ function placeOrder() {
+    // Gather user input from the form
+    const firstName = getValue('#firstName');
+    const lastName = getValue('#lastName');
+    const email = getValue('#email');
+    const mobileNo = getValue('#mobileNo');
+    const address = getValue('#address');
+    const country = getValue('#country');
+    const city = getValue('#city');
+    const province = getValue('#province');
+    const zipCode = getValue('#zipCode');
+
+    // Additional user inputs related to delivery, courier service, and payment
+    const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+    const courierService = document.querySelector('input[name="courierService"]').value;
+    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+    // Check if any of the required fields are not filled
+    if (!firstName || !lastName || !email || !mobileNo || !address || !country || !city || !province || !zipCode || !deliveryMethod) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    // Update Firebase data with user input
+    const user = auth.currentUser;
+
+    if (user) {
+      const uid = user.uid;
+      const ordersRef = ref(database, `orders`);
+
+      // Use the push function to add a new order
+      const newOrderRef = push(ordersRef);
+      update(newOrderRef, {
+        uid,
+        firstName,
+        lastName,
+        email,
+        mobileNo,
+        address,
+        country,
+        city,
+        province,
+        zipCode,
+        deliveryMethod,
+        courierService,
+        paymentMethod,
+    })
+    .then(() => {
+        // Alert the user that the order is processed
+        alert('Your order will be processed. Thank you for ordering!');
+
+        // Clear the form fields
+        clearFormFields();
+
+        // Clear delivery and payment options
+        clearDeliveryOptions();
+        clearPaymentOptions();
+
+        // Clear cart summary
+        clearCartSummary();
+      })
+      .catch((error) => {
+        console.error('Error saving order data:', error);
+      });
+  } else {
+    // Handle the case where the user is not logged in
+    alert('Please log in to place an order.');
+  }
+}
+
+// Helper function to get the value of an input element by ID
+function getValue(elementId) {
+  const element = document.querySelector(elementId);
+  return element ? element.value : null;
+}
+
+// Helper function to get the value of a selected radio button by name
+function getRadioValue(name) {
+  const checkedRadio = document.querySelector(`${name}:checked`);
+  return checkedRadio ? checkedRadio.value : null;
+}
+
+function selectCourierService(courier) {
+    const courierServiceInput = document.querySelector('input[name="courierService"]');
+    courierServiceInput.value = courier;
+}
+
+
+// Helper function to clear form fields
+function clearFormFields() {
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('mobileNo').value = '';
+  document.getElementById('address').value = '';
+  document.getElementById('country').value = '';
+  document.getElementById('city').value = '';
+  document.getElementById('province').value = '';
+  document.getElementById('zipCode').value = '';
+}
+
+// Helper function to clear delivery options
+function clearDeliveryOptions() {
+  const deliveryMethodRadios = document.querySelectorAll('input[name="deliveryMethod"]');
+  deliveryMethodRadios.forEach((radio) => {
+    radio.checked = false;
+  });
+
+  // Hide courier service options
+  document.getElementById('courierServices').style.display = 'none';
+}
+
+// Helper function to clear payment options
+function clearPaymentOptions() {
+  const paymentRadios = document.querySelectorAll('input[name="payment"]');
+  paymentRadios.forEach((radio) => {
+    radio.checked = false;
+  });
+}
+
+// Helper function to clear cart summary
+function clearCartSummary() {
+  document.getElementById('productName').textContent = '';
+  document.getElementById('subTotal').textContent = '';
+  document.getElementById('shippingCost').textContent = '';
+  document.getElementById('grandTotal').textContent = '';
+}
+
+
+// Add event listener for the "Place Order" button
+document.getElementById('placeOrderBtn').addEventListener('click', placeOrder);
+
+// Function to update cart counter and then call placeOrder
+function updateCartCounterAndPlaceOrder(user) {
+updateCartCounter(user);
+placeOrder();
+}
+
+// Check user login status on page load
+onAuthStateChanged(auth, (user) => {
+updateCartCounterAndPlaceOrder(user);
+});
           </script>
+          <!-- JS CODE FOR COURIER SERVICE -->
           <script>
             function selectDeliveryMethod(method) {
                 // Show/hide courier service options based on the selected delivery method
