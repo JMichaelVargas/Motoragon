@@ -243,17 +243,23 @@
                                             <input type="radio" class="custom-control-input" id="payment-gcash" name="payment">
                                             <label class="custom-control-label" for="payment-gcash">Gcash</label>
                                         </div>
+                                        <div class="payment-content" id="payment-gcash-show">
+                                        </div>
                                     </div>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="payment-credit-card" name="payment">
                                             <label class="custom-control-label" for="payment-credit-card">Credit Card</label>
                                         </div>
+                                        <div class="payment-content" id="payment-credit-card-show">
+                                        </div>
                                     </div>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="payment-cod" name="payment">
                                             <label class="custom-control-label" for="payment-cod">Cash on Delivery</label>
+                                        </div>
+                                        <div class="payment-content" id="payment-cod-show">
                                         </div>
                                     </div>
                                 </div>
@@ -568,9 +574,9 @@ function updateCartCounter(user) {
     const zipCode = getValue('#zipCode');
 
     // Additional user inputs related to delivery, courier service, and payment
-    const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+    const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').id;
     const courierService = document.querySelector('input[name="courierService"]').value;
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    const paymentMethod = document.querySelector('input[name="payment"]:checked').id;
 
     // Check if any of the required fields are not filled
     if (!firstName || !lastName || !email || !mobileNo || !address || !country || !city || !province || !zipCode || !deliveryMethod) {
