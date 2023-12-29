@@ -110,7 +110,7 @@
             </nav>
             <!-- Navbar End -->
 
-            <!-- CRUD START -->
+            <!-- Orders START -->
             <div class="container-fluid pt-4 px-4">
                 <div class="adding_section">
                     <div class="order_container">
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <!-- CRUD END -->
+            <!-- Orders END -->
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
@@ -202,20 +202,17 @@ function renderOrderData(container, orderId, orderData) {
         <div class="order_details_container">
             <div class="order_title">Order ${orderData.orderNumber}</div>
             <div class="billing_details">
-                <div class="mini_order_title">Billing Address</div>
-                <p class="p_order">Name: ${orderData.billingAddress.name}</p>
-                <p class="p_order">Address: ${orderData.billingAddress.address}</p>
-                <p class="p_order">Mobile No: ${orderData.billingAddress.mobileNo}</p>
-                <p class="p_order">Zip Code: ${orderData.billingAddress.zipCode}</p>
-            </div>
-            <div class="order_details">
-                <div class="mini_order_title">Order Details</div>
-                <p class="p_order">Products: ${orderData.cartTotal.productName}</p>
-                <p class="p_order">Order Date: ${orderData.timestamp}</p>
-                <p class="p_order">Sub Total: &#8369 ${orderData.cartTotal.subTotal}</p>
-                <p class="p_order">Shipping Cost: &#8369 ${orderData.cartTotal.shippingCost}</p>
-                <p class="p_order">Payment Method: ${orderData.paymentMethod}</p>
-                <h4 class="h3_order">Total: &#8369 ${orderData.cartTotal.grandTotal}</h3>
+                <div class="mini_order_title">Customer Details</div>
+                <p class="p_order"><span class="p_bold">Name</span>: ${orderData.firstName} ${orderData.lastName}</p>
+                <p class="p_order"><span class="p_bold">Address</span>: ${orderData.address}</p>
+                <p class="p_order"><span class="p_bold">City</span>: ${orderData.city}</p>
+                <p class="p_order"><span class="p_bold">Province</span>: ${orderData.province}</p>
+                <p class="p_order"><span class="p_bold">Country</span>: ${orderData.country}</p>
+                <p class="p_order"><span class="p_bold">Mobile No</span>: ${orderData.mobileNo}</p>
+                <p class="p_order"><span class="p_bold">Zip Code</span>: ${orderData.zipCode}</p>
+                <p class="p_order"><span class="p_bold">Payment Method</span>: ${orderData.paymentMethod}</p>
+                <p class="p_order"><span class="p_bold">Courier Service</span>: ${orderData.courierService}</p>
+                <p class="p_order"><span class="p_bold">Delivery Method</span>: ${orderData.deliveryMethod}</p>
             </div>
             <div class="status">
                 <p class="p_order">Status: Pending</p>
