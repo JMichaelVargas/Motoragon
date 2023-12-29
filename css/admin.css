@@ -428,3 +428,71 @@ img {
 #updateForm button:hover {
     background-color: #0077CC;
 }
+
+/***Orders Section***/
+.p_order{
+    margin-bottom: 5px;
+}
+.h3_order{
+    margin: 10px 0;
+}
+.order_title{
+    margin-bottom: 8px;
+    color: black;
+    font-weight: bold;
+    font-size: 27px;
+}
+.mini_order_title{
+    margin-bottom: 5px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+.order_section{
+    width: 100%;
+    margin: 10px auto;
+    padding: 40px 20px 20px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.order_container{
+    width: 100%;
+}
+.orders_container{
+    padding: 4rem 0rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2px;
+    gap: 2rem;
+}
+.cards_order_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    animation: fadein 0.8s;
+}
+.cards_order{
+    background-color: white;
+    box-shadow: 0 0 7px #dbdbdb;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    border-radius: 10px;
+}
+.order_details_container{
+    padding: 2rem;
+}
+.billing_details{
+    margin-bottom: 20px;
+}
+.order_details{
+    margin-bottom: 15px;
+}
+.status{
+    margin-bottom: 10px;
+}
