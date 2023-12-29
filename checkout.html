@@ -180,52 +180,45 @@
                                     <div class="col-md-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="shipto">
-                                            <label class="custom-control-label" for="shipto">Ship to different address</label>
+                                            <label class="custom-control-label" for="shipto">Delivery Option</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="shipping-address">
-                                <h2>Shipping Address</h2>
+                                <h2>Delivery</h2>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>First Name</label>
-                                        <input class="form-control" type="text" placeholder="First Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Last Name"</label>
-                                        <input class="form-control" type="text" placeholder="Last Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>E-mail</label>
-                                        <input class="form-control" type="text" placeholder="E-mail">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Mobile No</label>
-                                        <input class="form-control" type="text" placeholder="Mobile No">
-                                    </div>
+                                    <!-- Your existing input fields for personal information -->
+                            
                                     <div class="col-md-12">
-                                        <label>Address</label>
-                                        <input class="form-control" type="text" placeholder="Address">
+                                        <label>Delivery Method</label>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="doorToDoor" name="deliveryMethod" onclick="selectDeliveryMethod('doorToDoor')">
+                                            <label class="custom-control-label" for="doorToDoor">Door to Door</label>
+                                        </div>
+                                        
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="pickUp" name="deliveryMethod" onclick="selectDeliveryMethod('pickUp')">
+                                            <label class="custom-control-label" for="pickUp">Pick Up</label>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Country</label>
-                                        <select class="custom-select">
-                                            <option selected>Phlippines</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>City</label>
-                                        <input class="form-control" type="text" placeholder="City">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Province</label>
-                                        <input class="form-control" type="text" placeholder="Province">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>ZIP Code</label>
-                                        <input class="form-control" type="text" placeholder="ZIP Code">
+                            
+                                    <!-- Courier Service Options -->
+                                    <div id="courierServices" class="col-md-12" style="display:none;">
+                                        <label>Courier Service</label>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="jntExpress" name="courierService" onclick="selectCourierService('jntExpress')">
+                                            <label class="custom-control-label" for="jntExpress">J&T Express</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="ninjaVan" name="courierService" onclick="selectCourierService('ninjaVan')">
+                                            <label class="custom-control-label" for="ninjaVan">Ninja Van</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="lbcExpress" name="courierService" onclick="selectCourierService('lbcExpress')">
+                                            <label class="custom-control-label" for="lbcExpress">LBC Express</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -250,9 +243,9 @@
                                             <label class="custom-control-label" for="payment-1">Gcash</label>
                                         </div>
                                         <div class="payment-content" id="payment-1-show">
-                                            <p>
+                                            <!-- <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                     <div class="payment-method">
@@ -261,31 +254,9 @@
                                             <label class="custom-control-label" for="payment-2">Credit Card</label>
                                         </div>
                                         <div class="payment-content" id="payment-2-show">
-                                            <p>
+                                            <!-- <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-3" name="payment">
-                                            <label class="custom-control-label" for="payment-3">Check Payment</label>
-                                        </div>
-                                        <div class="payment-content" id="payment-3-show">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-4" name="payment">
-                                            <label class="custom-control-label" for="payment-4">Direct Bank Transfer</label>
-                                        </div>
-                                        <div class="payment-content" id="payment-4-show">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                     <div class="payment-method">
@@ -294,9 +265,9 @@
                                             <label class="custom-control-label" for="payment-5">Cash on Delivery</label>
                                         </div>
                                         <div class="payment-content" id="payment-5-show">
-                                            <p>
+                                            <!-- <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                 </div>
@@ -604,6 +575,24 @@
     updateCartCounter(user);
   });
           </script>
+          <script>
+            function selectDeliveryMethod(method) {
+                // Show/hide courier service options based on the selected delivery method
+                if (method === 'doorToDoor') {
+                    document.getElementById('courierServices').style.display = 'block';
+                } else {
+                    document.getElementById('courierServices').style.display = 'none';
+                }
+        
+                // You can use the selected method as needed (e.g., store it in a variable or perform some action)
+                console.log("Selected Delivery Method:", method);
+            }
+        
+            function selectCourierService(service) {
+                // You can use the selected courier service as needed
+                console.log("Selected Courier Service:", service);
+            }
+        </script>
     </body>
     <footer>
         <div class="container">
